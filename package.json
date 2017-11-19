@@ -1,0 +1,47 @@
+{
+  "name": "rest-placeholder",
+  "version": "1.0.0",
+  "description": "REST API with sandbox purpose",
+  "main": "server.js",
+  "scripts": {
+    "test": "npm test",
+    "start": "node server.js",
+    "eslint": "./node_modules/.bin/gulp eslint",
+    "dev": "./node_modules/.bin/gulp dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IvanS1991/rest-placeholder.git"
+  },
+  "keywords": [
+    "REST",
+    "ExpressJS",
+    "JS"
+  ],
+  "author": "Ivan Shtarbanov <ivan.shtarbanov1991@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/IvanS1991/rest-placeholder/issues"
+  },
+  "homepage": "https://github.com/IvanS1991/rest-placeholder#readme",
+  "devDependencies": {
+    "babel-eslint": "^8.0.2",
+    "chai": "^4.1.2",
+    "eslint": "^4.11.0",
+    "eslint-config-google": "^0.9.1",
+    "mocha": "^4.0.1",
+    "nodemon": "^1.12.1",
+    "sinon": "^4.1.2"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "express": "^4.16.2",
+    "gulp": "^3.9.1",
+    "gulp-eslint": "^4.0.0",
+    "gulp-nodemon": "^2.2.1",
+    "mongodb": "^2.2.33",
+    "morgan": "^1.9.0",
+    "passport": "^0.4.0"
+  }
+}
