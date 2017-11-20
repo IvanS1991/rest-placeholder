@@ -20,7 +20,7 @@ gulp.task('eslint', () => {
     .pipe(eslint.failAfterError());
 });
 
-gulp.task('dev', () => {
+gulp.task('dev', ['eslint'], () => {
   nodemon({
     script: 'server.js',
     tasks: ['eslint'],
