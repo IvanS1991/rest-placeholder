@@ -11,6 +11,10 @@ const init = (data) => {
   app.use(cors());
   app.use(bodyParser.json());
   app.use(morgan('dev'));
+  app.use((req, res, next) => {
+    req.user = {};
+    next();
+  });
 
   routes.attach(Router, app, data);
 
