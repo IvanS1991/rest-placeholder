@@ -1,10 +1,7 @@
 const init = (data) => {
   const register = (req, res, next) => {
-    data.users.create({
-        username: 'goshko321',
-        passHash: 'asd1234',
-        passHashRepeat: 'asd123',
-      })
+    const userData = req.body;
+    data.users.create(userData)
       .then((user) => {
         res.status(200).json(user);
       })
@@ -13,10 +10,19 @@ const init = (data) => {
       });
   };
 
+  const authenticate = (req, res, next) => {
+    const userData = req.body;
+    data.users.authenticate(userData)
+      .then((user) => {
+        console.log(user);
+        res.status(200)
+          .json(user);
+      });
+  };
+
   const getProfile = (req, res, next) => {
-    const username = req.user.username || req.params.username;
-    const profileOwner = req.user.username ? true : false;
-    data.users.profile(username, profileOwner)
+    const username = req.params.username || req.user.username;
+    data.users.profile(username)
       .then((profile) => {
         res.status(200).json(profile);
       })
@@ -28,6 +34,7 @@ const init = (data) => {
   return {
     register,
     getProfile,
+    authenticate,
   };
 };
 
