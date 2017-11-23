@@ -1,5 +1,5 @@
-const assert = require('assert');
 const sha1 = require('sha1');
+const { validateString } = require('../../utils/');
 
 const user = {
   username: {
@@ -12,20 +12,12 @@ const user = {
   },
 };
 
-const validate = (string, options) => {
-  const { regex, error } = options;
-  const isInvalid = !regex.test(string);
-  if (isInvalid) {
-    throw error;
-  }
-};
-
 class User {
   constructor(username, passHash) {
-    validate(username, user.username);
+    validateString(username, user.username);
     this.username = username;
     this.usernameLC = username.toLowerCase();
-    validate(passHash, user.passHash);
+    validateString(passHash, user.passHash);
     this.passHash = passHash;
     this.authKey = User.generateKey(username);
   }
