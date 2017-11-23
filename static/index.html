@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>REST placeholder</title>
+  <style>
+    body {
+      font-size: 20px;
+    }
+
+    header {
+      text-align: center;
+    }
+
+    main {
+      display: flex;
+      justify-content: space-around;
+    }
+    
+    main > .page-card {
+      padding: 2em;
+    }
+
+    .card-title {
+      text-align: center;
+    }
+
+    .page-card > .endpoint {
+      border: 1px solid grey;
+      padding: 1em;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 class="page-title">REST placeholder endpoints</h1>
+    <p>Here are described the existing endpoints for this RESTful API. <strong>The authentication is achieved by using an "X-Auth-Key" header in the request (you receive this authKey upon sign up/sign in)</strong>.</p>
+  </header>
+  <main>
+    <div class="page-card">
+      <h2 class="card-title">Users</h2>
+      <div class="endpoint">
+        <code>GET /users</code>
+        <p>Responds with the user's profile</p>
+      </div>
+      <div class="endpoint">
+        <code>GET /users/:username</code>
+        <p>Responds with an user's profile</p>
+      </div>
+      <div class="endpoint">
+        <code>POST /users</code>
+        <p>Registers a new user, requires <strong>{ username, passHash, passHashRepeat }</strong>, responds with <strong>{ username, authKey }</strong>.</p>
+      </div>
+      <div class="endpoint">
+        <code>PUT /users</code>
+        <p>Authenticates an user, requires <strong>{ username, passHash }</strong>, responds with <strong>{ username, authKey }</strong>.</p>
+      </div>
+    </div><div class="page-card">
+      <h2 class="card-title">Posts</h2>
+      <div class="endpoint">
+        <code>GET /posts</code>
+        <p>Responds with all posts</p>
+      </div>
+      <div class="endpoint">
+        <code>POST /posts</code>
+        <p>Creates a new post, responds with the new post, <strong>requires header "X-Auth-Key": authKey</strong></p>
+      </div>
+      <div class="endpoint">
+        <code>GET /posts/id/:id</code>
+        <p>Responds with a post with certain id</p>
+      </div>
+      <div class="endpoint">
+        <code>PUT /posts/category/:category</code>
+        <p>Responds with posts in a certain category</p>
+      </div>
+    </div>
+  </main>
+  <footer></footer>
+</body>
+</html>
