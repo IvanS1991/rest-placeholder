@@ -36,6 +36,9 @@ const init = (data) => {
 
   const create = (req, res, next) => {
     const postData = req.body;
+    if (!req.user.username) {
+      throw new Error('You must be logged in for that!');
+    }
     postData.author = req.user.username;
     data.posts.create(postData)
       .then((post) => {
