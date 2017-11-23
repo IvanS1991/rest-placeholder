@@ -10,6 +10,8 @@ const init = (data) => {
   const Router = express.Router;
   const routes = require('./routes');
 
+  app.use('/', express.static('static'));
+
   app.use(cors());
   app.use(bodyParser.json());
   app.use(morgan('dev'));
