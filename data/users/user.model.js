@@ -1,23 +1,31 @@
 const assert = require('assert');
 const sha1 = require('sha1');
 
-const validateUsername = (username) => {
-  // Validate username
-  const regex = /[a-zA-Z0-9_-]{2,20}/;
-  const error = new Error('Invalid username');
-
-  assert(username.match(regex), error);
+const user = {
+  username: {
+    regex: /[a-zA-Z0-9_-]{2,20}/,
+    error: new Error('Invalid username'),
+  },
+  passHash: {
+    regex: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}$/,
+    error: new Error('Invalid password'),
+  },
 };
 
-const validatePassHash = (passHash) => {
-  // Validate passHash
+const validate = (string, options) => {
+  const { regex, error } = options;
+  const isInvalid = !regex.test(string);
+  if (isInvalid) {
+    throw error;
+  }
 };
 
 class User {
   constructor(username, passHash) {
-    validateUsername(username);
+    validate(username, user.username);
     this.username = username;
-    validatePassHash(passHash);
+    this.usernameLC = username.toLowerCase();
+    validate(passHash, user.passHash);
     this.passHash = passHash;
     this.authKey = User.generateKey(username);
   }
