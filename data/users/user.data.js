@@ -45,7 +45,7 @@ const init = (db) => {
   const authenticate = (userData) => {
     const user = User.get(userData.username, userData.passHash);
     return usersCollection.findOne({
-        username: user.username,
+        usernameLC: user.username.toLowerCase(),
         passHash: user.passHash,
       })
       .then((match) => {
@@ -57,10 +57,6 @@ const init = (db) => {
           authKey: match.authKey,
         };
       });
-  };
-
-  const update = (userData) => {
-
   };
 
   const profile = (username, profileOwner) => {
@@ -76,7 +72,6 @@ const init = (db) => {
     create,
     checkIfAuthenticated,
     authenticate,
-    update,
     profile,
   };
 };
