@@ -9,11 +9,31 @@ const init = (db) => {
       commentData.content,
       commentData.threadId,
     );
-    return commentsCollection.insert(comment);
+    return commentsCollection.insert(comment)
+      .then((result) => {
+        return result.ops[0];
+      });
+  };
+
+  const getByThreadId = (threadId) => {
+    return commentsCollection.find({ threadId })
+      .toArray();
+  };
+
+  const deleteComment = (author, id, threadId) => {
+    return commentsCollection.remove({ author, id, threadId })
+      .then((result) => {
+        if (result.result.n !== 1) {
+          throw new Error(`Couldn't delete comment.`);
+        }
+        return result;
+      });
   };
 
   return {
     create,
+    getByThreadId,
+    delete: deleteComment,
   };
 };
 
