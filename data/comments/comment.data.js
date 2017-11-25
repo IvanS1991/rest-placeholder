@@ -15,11 +15,6 @@ const init = (db) => {
       });
   };
 
-  const getByPostId = (postId) => {
-    return commentsCollection.find({ postId })
-      .toArray();
-  };
-
   const deleteComment = (author, id, postId) => {
     return commentsCollection.remove({ author, id, postId })
       .then((result) => {
@@ -32,7 +27,6 @@ const init = (db) => {
 
   return {
     create,
-    getByPostId,
     delete: deleteComment,
   };
 };

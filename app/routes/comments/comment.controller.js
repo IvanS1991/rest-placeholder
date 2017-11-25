@@ -15,18 +15,6 @@ const init = (data) => {
       });
   };
 
-  const getByPostId = (req, res, next) => {
-    const postId = req.params.postId;
-    data.comments.getByPostId(postId)
-      .then((comments) => {
-        res.status(200)
-          .json(comments);
-      })
-      .catch((err) => {
-        next(err);
-      });
-  };
-
   const deleteComment = (req, res, next) => {
     const commentId = +req.params.commentId;
     const postId = req.params.postId;
@@ -48,7 +36,6 @@ const init = (data) => {
 
   return {
     create,
-    getByPostId,
     delete: deleteComment,
   };
 };
