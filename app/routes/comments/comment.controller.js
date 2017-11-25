@@ -15,9 +15,9 @@ const init = (data) => {
       });
   };
 
-  const getByThreadId = (req, res, next) => {
-    const threadId = req.params.threadId;
-    data.comments.getByThreadId(threadId)
+  const getByPostId = (req, res, next) => {
+    const postId = req.params.postId;
+    data.comments.getByPostId(postId)
       .then((comments) => {
         res.status(200)
           .json(comments);
@@ -29,12 +29,12 @@ const init = (data) => {
 
   const deleteComment = (req, res, next) => {
     const commentId = +req.params.commentId;
-    const threadId = req.params.threadId;
+    const postId = req.params.postId;
     const author = req.user.username;
     if (!author) {
       throw new Error('You must be logged in for that!');
     }
-    data.comments.delete(author, commentId, threadId)
+    data.comments.delete(author, commentId, postId)
       .then((result) => {
         res.status(200)
           .json({
@@ -48,7 +48,7 @@ const init = (data) => {
 
   return {
     create,
-    getByThreadId,
+    getByPostId,
     delete: deleteComment,
   };
 };

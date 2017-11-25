@@ -7,7 +7,7 @@ const init = (db) => {
     const comment = Comment.get(
       commentData.author,
       commentData.content,
-      commentData.threadId,
+      commentData.postId,
     );
     return commentsCollection.insert(comment)
       .then((result) => {
@@ -15,13 +15,13 @@ const init = (db) => {
       });
   };
 
-  const getByThreadId = (threadId) => {
-    return commentsCollection.find({ threadId })
+  const getByPostId = (postId) => {
+    return commentsCollection.find({ postId })
       .toArray();
   };
 
-  const deleteComment = (author, id, threadId) => {
-    return commentsCollection.remove({ author, id, threadId })
+  const deleteComment = (author, id, postId) => {
+    return commentsCollection.remove({ author, id, postId })
       .then((result) => {
         if (result.result.n !== 1) {
           throw new Error(`Couldn't delete comment.`);
@@ -32,7 +32,7 @@ const init = (db) => {
 
   return {
     create,
-    getByThreadId,
+    getByPostId,
     delete: deleteComment,
   };
 };

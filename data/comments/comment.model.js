@@ -8,16 +8,16 @@ const comment = {
 };
 
 class Comment {
-  constructor(author, content, threadId) {
+  constructor(author, content, postId) {
     this.author = author;
-    this.threadId = threadId;
+    this.postId = postId;
     validateString(content, comment.content);
     this.content = content;
     this.id = Math.floor(Math.random() * 100000);
   }
 
-  static get(author, content, threadId) {
-    return new Comment(author, content, threadId);
+  static get(author, content, postId) {
+    return new Comment(author, content, postId);
   }
 }
 
