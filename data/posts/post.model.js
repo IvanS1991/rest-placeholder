@@ -1,4 +1,3 @@
-const sha1 = require('sha1');
 const validateString = require('../../utils').validateString;
 
 const post = {
