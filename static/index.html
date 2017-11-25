@@ -8,19 +8,35 @@
   <style>
     body {
       font-size: 20px;
+      margin: 0;
+      padding: 0;
     }
 
-    header {
+    header, footer {
+      background-color: lightgray;
+      padding: 0.5em;
       text-align: center;
+    }
+
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
     }
 
     main {
       display: flex;
       justify-content: space-around;
     }
-    
+
+    code {
+      border-bottom: 1px solid grey;
+      font-weight: 900;
+    }
+
     main > .page-card {
-      padding: 2em;
+      padding: 0.5em;
     }
 
     .card-title {
@@ -29,7 +45,8 @@
 
     .page-card > .endpoint {
       border: 1px solid grey;
-      padding: 1em;
+      padding: .5em;
+      margin-bottom: 0.5em;
     }
   </style>
 </head>
@@ -68,15 +85,32 @@
         <p>Creates a new post, responds with the new post, <strong>requires header "X-Auth-Key": authKey</strong></p>
       </div>
       <div class="endpoint">
-        <code>GET /posts/id/:id</code>
+        <code>GET /posts/:id</code>
         <p>Responds with a post with certain id</p>
       </div>
       <div class="endpoint">
         <code>PUT /posts/category/:category</code>
         <p>Responds with posts in a certain category</p>
       </div>
+      <div class="endpoint">
+        <code>DELETE /posts/:id</code>
+        <p>Deletes a post and its comments</p>
+      </div>
     </div>
+  </div><div class="page-card">
+    <h2 class="card-title">Comments</h2>
+    <div class="endpoint">
+      <code>POST /comments</code>
+      <p>Creates a new comment, requires <strong>{ postId, content }</strong>, responds with the new comment.</p>
+    </div>
+    <div class="endpoint">
+      <code>DELETE /comments/:postId/:commentId</code>
+      <p>Deletes a comment</p>
+    </div>
+  </div>
   </main>
-  <footer></footer>
+  <footer>
+    Created by Ivan Shtarbanov (<a href="mailto:ivan.shtarbanov1991@gmail.com">email</a>) under the MIT license. Project repository - <a href="https://github.com/IvanS1991/rest-placeholder">here</a>.
+  </footer>
 </body>
 </html>
