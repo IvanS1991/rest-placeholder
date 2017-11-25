@@ -50,11 +50,30 @@ const init = (data) => {
       });
   };
 
+  const deletePost = (req, res, next) => {
+    const postId = req.params.postId;
+    const author = req.user.username;
+    if (!author) {
+      throw new Error('You must be logged in for that!');
+    }
+    data.posts.delete(author, postId)
+      .then(() => {
+        res.status(200)
+          .json({
+            msg: 'Post deleted!',
+          });
+      })
+      .catch((err) => {
+        next(err);
+      });
+  };
+
   return {
     getById,
     getByCategory,
     getAll,
     create,
+    delete: deletePost,
   };
 };
 

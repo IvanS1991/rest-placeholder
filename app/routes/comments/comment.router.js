@@ -4,8 +4,8 @@ const attach = (Router, app, data) => {
 
   router
     .post('/', commentController.create)
-    .get('/:threadId', commentController.getByThreadId)
-    .delete('/:threadId/:commentId', commentController.delete);
+    .get('/:postId', commentController.getByPostId)
+    .delete('/:postId/:commentId', commentController.delete);
 
   app.use('/comments', router);
 };

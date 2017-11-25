@@ -5,8 +5,9 @@ const attach = (Router, app, data) => {
   router
     .get('/', postController.getAll)
     .post('/', postController.create)
-    .get('/id/:id', postController.getById)
-    .get('/category/:category', postController.getByCategory);
+    .get('/category/:category', postController.getByCategory)
+    .get('/:id', postController.getById)
+    .delete('/:postId', postController.delete);
 
   app.use('/posts', router);
 };
