@@ -8,6 +8,7 @@
   <style>
     body {
       font-size: 20px;
+      font-family: sans-serif;
       margin: 0;
       padding: 0;
     }
@@ -27,7 +28,8 @@
 
     main {
       display: flex;
-      justify-content: space-around;
+      flex-wrap: wrap;
+      justify-content: space-between;
     }
 
     code {
@@ -37,6 +39,7 @@
 
     main > .page-card {
       padding: 0.5em;
+      max-width: 20%;
     }
 
     .card-title {
@@ -60,7 +63,7 @@
       <h2 class="card-title">Users</h2>
       <div class="endpoint">
         <code>GET /users</code>
-        <p>Responds with the user's profile</p>
+        <p>Responds with the user's profile, <strong>requires header "X-Auth-Key": authKey</strong></p>
       </div>
       <div class="endpoint">
         <code>GET /users/:username</code>
@@ -68,11 +71,11 @@
       </div>
       <div class="endpoint">
         <code>POST /users</code>
-        <p>Registers a new user, requires <strong>{ username, passHash, passHashRepeat }</strong>, responds with <strong>{ username, authKey }</strong>.</p>
+        <p>Registers a new user, requires <strong>{ username(string), passHash(string), passHashRepeat(string) }</strong>, responds with <strong>{ username, authKey }</strong>.</p>
       </div>
       <div class="endpoint">
         <code>PUT /users</code>
-        <p>Authenticates an user, requires <strong>{ username, passHash }</strong>, responds with <strong>{ username, authKey }</strong>.</p>
+        <p>Authenticates an user, requires <strong>{ username(string), passHash(string) }</strong>, responds with <strong>{ username, authKey }</strong>.</p>
       </div>
     </div><div class="page-card">
       <h2 class="card-title">Posts</h2>
@@ -97,20 +100,36 @@
         <p>Deletes a post and its comments</p>
       </div>
     </div>
-  </div><div class="page-card">
+  </div>
+  <div class="page-card">
     <h2 class="card-title">Comments</h2>
     <div class="endpoint">
       <code>POST /comments</code>
-      <p>Creates a new comment, requires <strong>{ postId, content }</strong>, responds with the new comment.</p>
+      <p>Creates a new comment, requires <strong>{ postId(string), content(string) }</strong>, responds with the new comment.</p>
     </div>
     <div class="endpoint">
       <code>DELETE /comments/:postId/:commentId</code>
       <p>Deletes a comment</p>
     </div>
   </div>
+  <div class="page-card">
+    <h2 class="card-title">TODOs</h2>
+    <div class="endpoint">
+      <code>POST /todos</code>
+      <p>Creates a new TODO, requires <strong>{ description(string) }</strong>, responds with the new TODO.</p>
+    </div>
+    <div class="endpoint">
+      <code>GET /todos</code>
+      <p>Responds with the currently logged in user's TODOs</p>
+    </div>
+    <div class="endpoint">
+      <code>PUT /todos/:id</code>
+      <p>Updates a TODO with this id, accepts <strong>{ ?description(string), ?completed(boolean) }</strong>, responds with the updated TODO.</p>
+    </div>
+  </div>
   </main>
   <footer>
-    Created by Ivan Shtarbanov (<a href="mailto:ivan.shtarbanov1991@gmail.com">email</a>) under the MIT license. Project repository - <a href="https://github.com/IvanS1991/rest-placeholder">here</a>.
+    Created by Ivan Shtarbanov (<a href="mailto:ivan.shtarbanov1991@gmail.com">email</a>, <a href="https://ivans1991.github.io" target="tab">website</a>) under the MIT license. Project repository - <a href="https://github.com/IvanS1991/rest-placeholder" target="tab">here</a>.
   </footer>
 </body>
 </html>
