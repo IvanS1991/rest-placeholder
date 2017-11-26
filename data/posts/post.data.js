@@ -9,22 +9,21 @@ const init = (db) => {
       postData.author,
       postData.title,
       postData.content,
-      postData.category
+      postData.category,
     );
     return postsCollection.insert(post)
-      .then((result) => {
-        return result.ops[0];
-      });
+      .then(result => result.ops[0]);
   };
 
   const getAll = () => {
-    return postsCollection.find()
+    const promise = postsCollection.find()
       .toArray();
+    return promise;
   };
 
   const getById = (id) => {
     let post;
-    return postsCollection.findOne({ id: id })
+    return postsCollection.findOne({ id })
       .then((match) => {
         if (!match) {
           throw new Error('This post does not exist!');
@@ -40,18 +39,20 @@ const init = (db) => {
   };
 
   const getByCategory = (category) => {
-    return postsCollection.find({ category: category })
+    const promise = postsCollection.find({ category })
       .toArray();
+    return promise;
   };
 
   const deletePost = (author, id) => {
-    return postsCollection.remove({ author, id })
+    const promise = postsCollection.remove({ author, id })
       .then((result) => {
         if (result.result.n !== 1) {
-          throw new Error(`Couldn't delete post.`);
+          throw new Error('Couldn\'t delete post.');
         }
         return commentsCollection.remove({ postId: id });
       });
+    return promise;
   };
 
   return {

@@ -1,6 +1,6 @@
 const init = (data) => {
   const getById = (req, res, next) => {
-    const id = req.params.id;
+    const { id } = req.params;
     data.posts.getById(id)
       .then((post) => {
         res.status(200)
@@ -12,7 +12,7 @@ const init = (data) => {
   };
 
   const getByCategory = (req, res, next) => {
-    const category = req.params.category;
+    const { category } = req.params;
     data.posts.getByCategory(category)
       .then((posts) => {
         res.status(200)
@@ -51,7 +51,7 @@ const init = (data) => {
   };
 
   const deletePost = (req, res, next) => {
-    const postId = req.params.postId;
+    const { postId } = req.params;
     const author = req.user.username;
     if (!author) {
       throw new Error('You must be logged in for that!');

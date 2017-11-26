@@ -17,13 +17,13 @@ const init = (data) => {
 
   const deleteComment = (req, res, next) => {
     const commentId = +req.params.commentId;
-    const postId = req.params.postId;
+    const { postId } = req.params;
     const author = req.user.username;
     if (!author) {
       throw new Error('You must be logged in for that!');
     }
     data.comments.delete(author, commentId, postId)
-      .then((result) => {
+      .then(() => {
         res.status(200)
           .json({
             msg: 'OK',

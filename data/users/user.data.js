@@ -10,7 +10,7 @@ const init = (db) => {
       return Promise.resolve();
     }
 
-    return usersCollection.findOne({ authKey: authKey })
+    return usersCollection.findOne({ authKey })
       .then((match) => {
         req.user = match;
         return match;
@@ -45,9 +45,9 @@ const init = (db) => {
   const authenticate = (userData) => {
     const user = User.get(userData.username, userData.passHash);
     return usersCollection.findOne({
-        usernameLC: user.username.toLowerCase(),
-        passHash: user.passHash,
-      })
+      usernameLC: user.username.toLowerCase(),
+      passHash: user.passHash,
+    })
       .then((match) => {
         if (!match) {
           throw new Error('Wrong username or password!');
@@ -59,13 +59,15 @@ const init = (db) => {
       });
   };
 
-  const profile = (username, profileOwner) => {
-    return usersCollection.findOne({ username: username })
+  const profile = (username) => {
+    const promise = usersCollection.findOne({ username })
       .then((match) => {
-        return {
+        const profileData = {
           username: match.username,
         };
+        return profileData;
       });
+    return promise;
   };
 
   return {

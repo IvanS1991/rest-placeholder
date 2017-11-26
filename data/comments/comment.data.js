@@ -10,19 +10,18 @@ const init = (db) => {
       commentData.postId,
     );
     return commentsCollection.insert(comment)
-      .then((result) => {
-        return result.ops[0];
-      });
+      .then(result => result.ops[0]);
   };
 
   const deleteComment = (author, id, postId) => {
-    return commentsCollection.remove({ author, id, postId })
+    const promise = commentsCollection.remove({ author, id, postId })
       .then((result) => {
         if (result.result.n !== 1) {
-          throw new Error(`Couldn't delete comment.`);
+          throw new Error('Couldn\'t delete comment.');
         }
         return result;
       });
+    return promise;
   };
 
   return {

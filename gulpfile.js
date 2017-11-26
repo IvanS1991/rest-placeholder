@@ -8,15 +8,6 @@ gulp.task('eslint', () => {
       configFile: '.eslintrc',
     }))
     .pipe(eslint.format())
-    .pipe(eslint.result((result) => {
-      if (result.messages.length) {
-        console.log(result.filePath);
-        result.messages.forEach((item) => {
-          console
-            .log(`Line: ${item.line}, Column: ${item.column}: ${item.message}`);
-        });
-      }
-    }))
     .pipe(eslint.failAfterError());
 });
 
