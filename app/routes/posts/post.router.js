@@ -1,6 +1,8 @@
+let postController = require('./post.controller');
+
 const attach = (Router, app, data) => {
   const router = new Router();
-  const postController = require('./post.controller').init(data);
+  postController = postController.init(data);
 
   router
     .get('/', postController.getAll)

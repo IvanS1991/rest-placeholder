@@ -4,11 +4,11 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 
 const utils = require('../utils');
+const routes = require('./routes');
 
 const init = (data) => {
   const app = express();
-  const Router = express.Router;
-  const routes = require('./routes');
+  const { Router } = express;
 
   app.use('/', express.static('static'));
 
