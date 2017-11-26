@@ -14,9 +14,11 @@ const init = (data) => {
     const userData = req.body;
     data.users.authenticate(userData)
       .then((user) => {
-        console.log(user);
         res.status(200)
           .json(user);
+      })
+      .catch((err) => {
+        next(err);
       });
   };
 

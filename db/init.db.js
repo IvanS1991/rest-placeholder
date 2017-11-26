@@ -1,8 +1,10 @@
 const mongo = require('mongodb');
-const MongoClient = mongo.MongoClient;
+
+const { MongoClient } = mongo;
 
 const init = (dbString) => {
-  return MongoClient.connect(dbString);
+  const promise = MongoClient.connect(dbString);
+  return promise;
 };
 
 module.exports = { init };

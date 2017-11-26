@@ -1,5 +1,7 @@
+let commentController = require('./comment.controller');
+
 const attach = (Router, app, data) => {
-  const commentController = require('./comment.controller').init(data);
+  commentController = commentController.init(data);
   const router = new Router();
 
   router

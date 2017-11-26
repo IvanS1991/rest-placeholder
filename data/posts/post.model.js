@@ -1,4 +1,4 @@
-const validateString = require('../../utils').validateString;
+const { validateString } = require('../../utils');
 
 const post = {
   title: {
@@ -28,12 +28,12 @@ class Post {
   }
 
   static generateId(title) {
-    return Math.floor(Math.random() * 10000) + '-' +title
+    return `${Math.floor(Math.random() * 10000)}-${+title
       .toLowerCase()
       .trim()
       .split(/\s+/g)
       .join('-')
-      .replace(/[^a-zA-Z0-9-]/ig, '');
+      .replace(/[^a-zA-Z0-9-]/ig, '')}`;
   }
 
   static get(author, title, content, category) {

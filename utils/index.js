@@ -1,4 +1,7 @@
+const errorHandler = require('./error-handler');
+const validateString = require('./validate-string');
+
 module.exports = {
-  errorHandler: require('./error-handler'),
-  validateString: require('./validate-string'),
+  errorHandler,
+  validateString,
 };

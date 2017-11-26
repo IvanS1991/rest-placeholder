@@ -1,6 +1,8 @@
+let userController = require('./user.controller');
+
 const attach = (Router, app, data) => {
   const router = new Router();
-  const userController = require('./user.controller').init(data);
+  userController = userController.init(data);
 
   router
     .get('/', userController.getProfile)
